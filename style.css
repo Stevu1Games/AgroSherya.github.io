@@ -1,0 +1,42 @@
+body {
+    display: grid;
+    grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+    grid-gap: 10px;
+    grid-template-areas:
+        "h1 h1 h1 h1 h2 h2 h2 h2 h2 h2"
+        "main main main main main main main main main main"
+        "main main main main main main main main main main"
+        "main main main main main main main main main main"
+        "main main main main main main main main main main"
+        "main main main main main main main main main main"
+        "main main main main main main main main main main"
+        "main main main main main main main main main main"
+        "main main main main main main main main main main"
+        "main main main main main main main main main main"
+}
+.item {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+.card {
+    grid-area: card;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+.h1 {
+    grid-area: h1;
+    font-size: 2em;
+    margin: 0;
+}
+.h2 {
+    grid-area: h2;
+    font-size: 1.5em;
+    margin: 0;
+}
+.main {
+    grid-area: main;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
