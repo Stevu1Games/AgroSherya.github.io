@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Агропритяжение — Точки притяжения</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>АгроПритяжение</h1>
+        <p class="subtitle">— агропромышленный проект</p>
+    </header>
+
+    <main class="main">
+        <!-- Кнопка на главную -->
+        <nav class="breadcrumb">
+            <a href="index.html">← На главную</a>
+        </nav>
+
+        <!-- Панель сортировки -->
+        <div class="sort-panel">
+            <span class="sort-label">Сортировка:</span>
+            <button class="sort-btn active" data-sort="location">По местности</button>
+            <button class="sort-btn" data-sort="alphabet">По алфавиту</button>
+        </div>
+
+        <!-- Контейнер для карточек -->
+        <div id="cards-container">
+            <!-- Карточки будут добавлены через JavaScript -->
+        </div>
+
+        <div class="call-to-action">
+            <p>Приезжайте на нашу территорию — у нас интересно!</p>
+            <p class="small">Разработано в рамках проекта «АгроПритяжение», 2026</p>
+        </div>
+    </main>
+
+    <script>
+        // Данные о точках агропритяжения
+        var placesData = [
+            {
+                name: "ООО «Шерья»",
+                location: "с. Шерья",
+                locationGroup: "Село Шерья",
+                description: "Один из крупнейших агрохолдингов Пермского края. Более 7 тыс. голов КРС, современная техника.",
+                image: "https://avatars.mds.yandex.net/get-altay/2035926/2a00000173d3c9d09f8024fe5a41d009a38f/XXXL",
+                link: "sherya.html"
+            },
+            {
+                name: "МБОУ СОШ «Шерьинская — Базовая школа»",
+                location: "с. Шерья",
+                locationGroup: "Село Шерья",
+                description: "Агроклассы, центр «Точка роста», гидропоника, «Босоногая тропа».",
+                image: "https://avatars.mds.yandex.net/get-altay/2035926/2a00000173d3c9d09f8024fe5a41d009a38f/XXXL",
+                link: "school.html"
+            },
+            {
+                name: "База отдыха «Шерья»",
+                location: "д. Рыбхоз",
+                locationGroup: "Село Шерья",
+                description: "Аренда домиков, баня, рыбалка (карп, щука, форель).",
+                image: "https://avatars.mds.yandex.net/get-altay/2035926/2a00000173d3c9d09f8024fe5a41d009a38f/XXXL",
+                link: "baza.html"
+            },
+            {
+                name: "Конный клуб «Слобода»",
+                location: "с. Сергино (ООО «Урожай»)",
+                locationGroup: "Село Сергино",
+                description: "Племенной репродуктор орловских рысаков. Верховая езда, этно-кафе «Амбарчик».",
+                image: "https://avatars.mds.yandex.net/get-altay/2035926/2a00000173d3c9d09f8024fe5a41d009a38f/XXXL",
+                link: "sloboda.html"
+            },
+            {
+                name: "ООО «Дубровинский»",
+                location: "Нытвенский район",
+                locationGroup: "Нытвенский район",
+                description: "Племенное хозяйство по разведению КРС черно-пестрой породы. 3,7 тыс. га пашни.",
+                image: "https://avatars.mds.yandex.net/get-altay/2035926/2a00000173d3c9d09f8024fe5a41d009a38f/XXXL",
+                link: "dubrovinsky.html"
+            }
+        ];
+
+        // Функция создания карточки
+        function createCard(place) {
+            return '<div class="card">' +
+                '<img src="' + place.image + '" alt="' + place.name + '">' +
+                '<h3>' + place.name + '</h3>' +
+                '<p class="location">📍 ' + place.location + '</p>' +
+                '<p>' + place.description + '</p>' +
+                '<a href="' + place.link + '">Подробнее</a>' +
+                '</div>';
+        }
+
+        // Функция сортировки и отображения
+        function renderCards(sortType) {
+            var container = document.getElementById('cards-container');
+            var sortedData = placesData.slice();
+
+            if (sortType === 'alphabet') {
+                // Сортировка по алфавиту
+                sortedData.sort(function(a, b) {
+                    return a.name.localeCompare(b.name, 'ru');
+                });
+                // Выводим все карточки в одном контейнере
+                var html = '<div class="cards-container">';
+                sortedData.forEach(function(place) {
+                    html += createCard(place);
+                });
+                html += '</div>';
+                container.innerHTML = html;
+            } else {
+                // Сортировка по местности (группировка)
+                var groups = {};
+                sortedData.forEach(function(place) {
+                    if (!groups[place.locationGroup]) {
+                        groups[place.locationGroup] = [];
+                    }
+                    groups[place.locationGroup].push(place);
+                });
+
+                var html = '';
+                // Порядок групп
+                var groupOrder = ['Село Шерья', 'Село Сергино', 'Нытвенский район'];
+                groupOrder.forEach(function(groupName) {
+                    if (groups[groupName]) {
+                        html += '<section class="location-group">';
+                        html += '<h2 class="location-title">' + groupName + '</h2>';
+                        html += '<div class="cards-container">';
+                        groups[groupName].forEach(function(place) {
+                            html += createCard(place);
+                        });
+                        html += '</div></section>';
+                    }
+                });
+                container.innerHTML = html;
+            }
+        }
+
+        // Обработчики кнопок сортировки
+        document.querySelectorAll('.sort-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.sort-btn').forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                renderCards(this.dataset.sort);
+            });
+        });
+
+        // Первоначальный рендер (по местности)
+        renderCards('location');
+    </script>
+</body>
+</html>
