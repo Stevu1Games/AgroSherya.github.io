@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Агропритяжение — О проекте</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=YOUR_API_KEY" type="text/javascript"></script>
+</head>
+<body>
+    <header class="header">
+        <h1>АгроПритяжение</h1>
+        <p class="subtitle">— агропромышленный проект</p>
+    </header>
+
+    <main class="main">
+        <!-- Описание проекта -->
+        <section class="about-section">
+            <h2>О проекте</h2>
+            <p><strong>«Агропритяжение»</strong> — исследовательский проект, посвящённый анализу агротуристической привлекательности Шерьинско-Чекменевского поселения Нытвенского муниципального округа.</p>
+            <p>Цель проекта — выявить точки притяжения для развития сельского туризма, создать карту-маршрут и привлечь внимание к уникальным объектам нашей малой родины.</p>
+            <p>На территории поселения находятся сельхозпредприятия, конный клуб, база отдыха, школа с агроклассами и другие интересные объекты, которые могут стать основой для развития агротуризма.</p>
+            
+            <h3>Направления притяжения</h3>
+            <ul>
+                <li>АгроАква</li>
+                <li>ЭкоТропа</li>
+                <li>Гидропоника</li>
+                <li>АгроЗоо</li>
+                <li>АгроМеханика</li>
+                <li>Гостиница и кафе</li>
+            </ul>
+        </section>
+
+        <!-- Карта -->
+        <section class="map-section">
+            <h2>Карта агропритяжения</h2>
+            <div id="map" style="width: 100%; height: 450px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        </section>
+
+        <!-- Навигация -->
+        <section class="nav-section">
+            <h2>Навигация</h2>
+            <div class="nav-buttons">
+                <a href="index2.html" class="nav-btn">📍 Точки агропритяжения</a>
+                <a href="sherya.html" class="nav-btn">🐄 ООО «Шерья»</a>
+                <a href="school.html" class="nav-btn">🎓 Школа</a>
+                <a href="baza.html" class="nav-btn">🏕 База отдыха</a>
+                <a href="sloboda.html" class="nav-btn">🐴 Конный клуб</a>
+                <a href="dubrovinsky.html" class="nav-btn">🌾 ООО «Дубровинский»</a>
+            </div>
+        </section>
+
+        <div class="call-to-action">
+            <p>Приезжайте на нашу территорию — у нас интересно!</p>
+            <p class="small">Разработано в рамках проекта «АгроПритяжение», 2026</p>
+        </div>
+    </main>
+
+    <script>
+        // Инициализация карты Яндекс
+        ymaps.ready(init);
+        
+        function init() {
+            var map = new ymaps.Map("map", {
+                center: [58.01, 55.15],
+                zoom: 10,
+                controls: ['zoomControl', 'fullscreenControl']
+            });
+
+            // Точки агропритяжения с координатами
+            var places = [
+                {
+                    name: "ООО «Шерья»",
+                    coords: [58.014381, 55.196918],
+                    desc: "Агрохолдинг, более 7 тыс. голов КРС",
+                    link: "sherya.html"
+                },
+                {
+                    name: "МБОУ СОШ «Шерьинская — Базовая школа»",
+                    coords: [58.013, 55.19],
+                    desc: "Агроклассы, гидропоника, «Босоногая тропа»",
+                    link: "school.html"
+                },
+                {
+                    name: "База отдыха «Шерья»",
+                    coords: [58.02, 55.18],
+                    desc: "д. Рыбхоз, ул. Солнечная, 13",
+                    link: "baza.html"
+                },
+                {
+                    name: "Конный клуб «Слобода»",
+                    coords: [58.106504, 55.098815],
+                    desc: "с. Сергино, ООО «Урожай»",
+                    link: "sloboda.html"
+                },
+                {
+                    name: "ООО «Дубровинский»",
+                    coords: [58.008581, 55.128953],
+                    desc: "д. Шумиха, ул. Школьная, 2",
+                    link: "dubrovinsky.html"
+                }
+            ];
+
+            // Добавление меток на карту
+            places.forEach(function(place) {
+                var placemark = new ymaps.Placemark(place.coords, {
+                    balloonContentHeader: place.name,
+                    balloonContentBody: place.desc + '<br><a href="' + place.link + '">Подробнее →</a>',
+                    hintContent: place.name
+                }, {
+                    preset: 'islands#greenIcon'
+                });
+                map.geoObjects.add(placemark);
+            });
+        }
+    </script>
+</body>
+</html>
