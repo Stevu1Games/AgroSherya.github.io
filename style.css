@@ -10,14 +10,14 @@ main {
 }
 header {
     display: grid;
-    grid-template: 5fr 1fr 1fr / 20px;
+    grid-template: 5fr 1fr 1fr / 15px;
     padding: 15px;
     background-color: limegreen;
     color: bisque;
     grid-gap: 10px;
     position: fixed;
     width: 100%;
-    height: 20px;
+    height: 15px;
 }
 .headerLink {
     padding: 5px;
