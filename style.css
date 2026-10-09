@@ -15,7 +15,7 @@ header {
     width: 100%;
     margin: 5px;
     background-color: chartreuse;
-    align-items: center;
+    align-items: start;
 }
 .headerLinks {
     display: flex;
