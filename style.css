@@ -11,7 +11,7 @@ main {
 header {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    height: 35px;
+    height: 40px;
     width: 100%;
     margin: 5px;
     background-color: chartreuse;
