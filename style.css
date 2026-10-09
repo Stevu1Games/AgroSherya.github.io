@@ -2,32 +2,55 @@ body {
     display: flex;
     flex-direction: column;
     background-color: rgb(214, 214, 214);
+    margin: 0;              /* убираем отступ браузера по умолчанию */
 }
-main {
-    display: flex;
-    flex-direction: column;
-    margin: 65px 0 0 0;
-}
+
 header {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    height: 40px;
-    width: 100%;
-    margin: 5px;
+    position: fixed;        /* закрепляем сверху */
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 20px;
     background-color: chartreuse;
-    align-items: start;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    z-index: 1000;          /* выше карты */
 }
+
+.projectName {
+    font-size: 20px;
+    margin: 0;
+    white-space: nowrap;
+}
+
 .headerLinks {
     display: flex;
     flex-direction: row;
-    margin: 5px;
+    gap: 10px;
 }
+
 .headerLink {
-    padding: 5px;
+    padding: 6px 14px;
     background-color: beige;
     border-radius: 15px;
     text-align: center;
     color: darkolivegreen;
+    text-decoration: none;   /* убираем подчёркивание */
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.headerLink:hover {
+    background-color: #ececbf;
+    transform: translateY(-1px);
+}
+
+.headerLink[aria-disabled="true"] {
+    opacity: 0.6;
+    pointer-events: none;    /* «Главная» не кликается */
 }
 .projectName {
     font-size: 20px;
