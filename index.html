@@ -1,63 +1,49 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Агропритяжение — О проекте</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=2e094376-a6fc-4f74-9b52-ea7849d07741" type="text/javascript"></script>
-</head>
-<body>
-    <header class="header">
-        <h1>АгроПритяжение</h1>
-        <p class="subtitle">— агропромышленный проект</p>
-    </header>
-
-    <main class="main">
-        <!-- Описание проекта -->
-        <section class="about-section">
-            <h2>О проекте</h2>
-            <p><strong>«Агропритяжение»</strong> — исследовательский проект, посвящённый анализу агротуристической привлекательности Шерьинско-Чекменевского поселения Нытвенского муниципального округа.</p>
-            <p>Цель проекта — выявить точки притяжения для развития сельского туризма, создать карту-маршрут и привлечь внимание к уникальным объектам нашей малой родины.</p>
-            <p>На территории поселения находятся сельхозпредприятия, конный клуб, база отдыха, школа с агроклассами и другие интересные объекты, которые могут стать основой для развития агротуризма.</p>
+<html>
+    <head>
+        <title>АгроШерья - главная</title>
+        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=2e094376-a6fc-4f74-9b52-ea7849d07741" type="text/javascript"></script>
+        <link rel="stylesheet" src="style.css">
+        <style>
             
-            <h3>Направления притяжения</h3>
-            <ul>
-                <li>АгроАква</li>
-                <li>ЭкоТропа</li>
-                <li>Гидропоника</li>
-                <li>АгроЗоо</li>
-                <li>АгроМеханика</li>
-                <li>Гостиница и кафе</li>
-            </ul>
-        </section>
+        </style>
+    </head>
+    <body>
+        <header>
+            <p class="projectName"><strong>АгроШерья</strong></p>
+            <a class="headerLink" href="#" aria-disabled="true">Главная</a>
+            <a class="headerLink" href="#">Навигация</a>
+        </header>
+        <main>
+            <!--Описание проекта-->
+            <section class="aboutProject">
+                <h1>О проекте:</h1>
+                <p><span class="warning">«Агропритяжение»</span> — исследовательский проект, посвящённый анализу агротуристической привлекательности Шерьинско-Чекменевского поселения Нытвенского муниципального округа.</p>
+                <p><span class="warning">Цель проекта:</span> выявить точки притяжения для развития сельского туризма, создать карту-маршрут и привлечь внимание к уникальным объектам нашей малой родины.</p>
+                <p>На территории поселения находятся сельхозпредприятия, конный клуб, база отдыха, школа с агроклассами и другие интересные объекты, которые могут стать основой для развития агротуризма.</p>
+                <h2>Направления:</h2>
+                <ul>
+                    <li>АгроАква</li>
+                    <li>ЭкоТропа</li>
+                    <li>Гидропоника</li>
+                    <li>АгроЗоо</li>
+                    <li>АгроМеханика</li>
+                    <li>Гостинница и кафе</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Карта направлений</h2>
+                <div id="map" style="width: 100%; height: 450px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+            </section>
 
-        <!-- Карта -->
-        <section class="map-section">
-            <h2>Карта агропритяжения</h2>
-            <div id="map" style="width: 100%; height: 450px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
-        </section>
+            <footer>
+                <p>Приезжайте к нам ― у нас интересно!</p>
+                <p>Разработанно в рамках проекта "АгроПритяжение", 2026</p>
+            </footer>
+        </main>
 
-        <!-- Навигация -->
-        <section class="nav-section">
-            <h2>Навигация</h2>
-            <div class="nav-buttons">
-                <a href="index2.html" class="nav-btn">📍 Точки агропритяжения</a>
-                <a href="sherya.html" class="nav-btn">🐄 ООО «Шерья»</a>
-                <a href="school.html" class="nav-btn">🎓 Школа</a>
-                <a href="baza.html" class="nav-btn">🏕 База отдыха</a>
-                <a href="sloboda.html" class="nav-btn">🐴 Конный клуб</a>
-                <a href="dubrovinsky.html" class="nav-btn">🌾 ООО «Дубровинский»</a>
-            </div>
-        </section>
-
-        <div class="call-to-action">
-            <p>Приезжайте на нашу территорию — у нас интересно!</p>
-            <p class="small">Разработано в рамках проекта «АгроПритяжение», 2026</p>
-        </div>
-    </main>
-
-    <script>
+        <!--Интеграция карты и точки с координатами-->
+        <script>
         // Инициализация карты Яндекс
         ymaps.ready(init);
         
@@ -115,5 +101,5 @@
             });
         }
     </script>
-</body>
+    </body>
 </html>
