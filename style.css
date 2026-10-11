@@ -1,3 +1,4 @@
+/* ===== БАЗОВЫЕ СТИЛИ ===== */
 body {
     display: flex;
     flex-direction: column;
@@ -5,6 +6,11 @@ body {
     margin: 0;
 }
 
+main {
+    padding-top: 70px; /* чтобы контент не скрывался под фиксированным header */
+}
+
+/* ===== ШАПКА ===== */
 header {
     position: fixed;
     top: 0;
@@ -48,6 +54,7 @@ header {
     transform: translateY(-1px);
 }
 
+/* ===== СЕКЦИИ И КОНТЕНТ ===== */
 section {
     margin: 20px;
     padding: 20px;
@@ -69,9 +76,7 @@ p {
     margin: 10px;
 }
 
-/* ===== ДОБАВЛЕННЫЕ ПРАВИЛА ДЛЯ СТРАНИЦЫ НАВИГАЦИИ ===== */
-
-/* Панель сортировки */
+/* ===== ПАНЕЛЬ СОРТИРОВКИ (navigation.html) ===== */
 .sort-panel {
     display: flex;
     align-items: center;
@@ -108,7 +113,7 @@ p {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Сетка карточек */
+/* ===== СЕТКА КАРТОЧЕК ===== */
 .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -116,7 +121,7 @@ p {
     margin-top: 15px;
 }
 
-/* Карточка точки притяжения */
+/* ===== КАРТОЧКА ТОЧКИ ПРИТЯЖЕНИЯ ===== */
 .card {
     background-color: white;
     border-radius: 15px;
@@ -176,7 +181,7 @@ p {
     background-color: #a8e600;
 }
 
-/* Группировка по местности */
+/* ===== ГРУППИРОВКА ПО МЕСТНОСТИ ===== */
 .location-group {
     margin-bottom: 30px;
 }
@@ -189,7 +194,7 @@ p {
     border-bottom: 2px solid chartreuse;
 }
 
-/* Убираем лишние отступы у вложенных секций внутри контейнера */
+/* Сброс отступов у вложенных секций внутри .aboutProject (navigation.html) */
 .aboutProject > section {
     margin: 0;
     padding: 0;
@@ -197,18 +202,81 @@ p {
     box-shadow: none;
 }
 
-/* Уточнение для кнопок сортировки внутри aboutProject */
 .aboutProject .sort-panel {
     margin-top: 0;
 }
 
-/* Адаптация под мобильные устройства */
+/* ===== АДАПТАЦИЯ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА ===== */
 @media (max-width: 600px) {
+    main {
+        padding-top: 60px;
+    }
+
+    header {
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    .projectName {
+        font-size: 16px;
+    }
+
+    .headerLinks {
+        gap: 6px;
+    }
+
+    .headerLink {
+        padding: 4px 10px;
+        font-size: 14px;
+    }
+
+    section {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    footer {
+        margin: 10px;
+        font-size: 0.9rem;
+    }
+
+    /* Главная страница (index.html) */
+    .aboutProject h1 {
+        font-size: 1.4rem;
+    }
+
+    .aboutProject h2 {
+        font-size: 1.2rem;
+    }
+
+    .aboutProject p,
+    .aboutProject li {
+        font-size: 0.95rem;
+    }
+
+    .aboutProject ul {
+        padding-left: 20px;
+    }
+
+    #map {
+        height: 300px !important; /* перекрываем inline-стиль */
+    }
+
+    /* Страница навигации (navigation.html) */
     .cards-container {
         grid-template-columns: 1fr;
     }
+
     .sort-panel {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .card img {
+        height: 140px;
+    }
+
+    .location-title {
+        font-size: 1.3rem;
     }
 }
