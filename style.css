@@ -64,3 +64,9 @@ section {
     color: rgb(106, 106, 106);
     margin: 15px;
 }
+.warning {
+    color: chartreuse;
+}
+p {
+    margin: 10px;
+}
