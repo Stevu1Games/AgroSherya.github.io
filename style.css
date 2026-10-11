@@ -4,10 +4,9 @@ body {
     flex-direction: column;
     background-color: rgb(214, 214, 214);
     margin: 0;
-}
-
-main {
-    padding-top: 70px; /* чтобы контент не скрывался под фиксированным header */
+    padding-top: 70px; /* отступ под фиксированную шапку — работает на всех страницах */
+    box-sizing: border-box;
+    min-height: 100vh;
 }
 
 /* ===== ШАПКА ===== */
@@ -53,6 +52,11 @@ header {
 .headerLink:hover {
     background-color: #ececbf;
     transform: translateY(-1px);
+}
+
+.headerLink[aria-disabled="true"] {
+    opacity: 0.6;
+    pointer-events: none;
 }
 
 /* ===== СЕКЦИИ И КОНТЕНТ ===== */
@@ -210,6 +214,7 @@ p {
 /* ===== СТРАНИЦЫ ОПИСАНИЯ ОБЪЕКТОВ (detail pages) ===== */
 .detail-page {
     max-width: 900px;
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
@@ -255,8 +260,9 @@ p {
 }
 
 .detail-img {
+    display: block;
     width: 100%;
-    max-height: 420px;
+    aspect-ratio: 16 / 9;   /* фиксированное соотношение — картинка не растягивается */
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 20px;
@@ -298,7 +304,7 @@ p {
 
 /* ===== АДАПТАЦИЯ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА ===== */
 @media (max-width: 600px) {
-    main {
+    body {
         padding-top: 60px;
     }
 
@@ -376,23 +382,35 @@ p {
     }
 
     .detail-card {
-        padding: 18px;
+        padding: 15px;
     }
 
     .detail-card h1 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+    }
+
+    .detail-card .location {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
     }
 
     .detail-img {
-        max-height: 240px;
-        margin-bottom: 15px;
+        aspect-ratio: 4 / 3;   /* компактнее на телефоне */
+        margin-bottom: 12px;
     }
 
     .detail-text h3 {
         font-size: 1.05rem;
+        margin-top: 16px;
+    }
+
+    .detail-text p,
+    .detail-text li {
+        font-size: 0.92rem;
     }
 
     .call-to-action {
         padding: 12px;
+        font-size: 0.9rem;
     }
 }
