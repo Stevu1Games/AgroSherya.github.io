@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>АгроШерья - новости</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <header>
+            <p class="projectName"><strong>АгроШерья</strong></p>
+            <div class="headerLinks">
+                <a class="headerLink" href="./index.html">Главная</a>
+                <a class="headerLink" href="./navigation.html">Навигация</a>
+                <a class="headerLink" href="./news.html" aria-disabled="true">Новости</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="aboutProject">
+                <h1>Новости проекта:</h1>
+                <p><span class="warning">Здесь появляются свежие события</span> — экскурсии, мероприятия, обновления маршрута и всё, что происходит в Шерьинско-Чекменевском поселении.</p>
+
+                <div class="sort-panel">
+                    <span class="sort-label">Сортировка:</span>
+                    <button class="sort-btn active" data-sort="new">Сначала свежие</button>
+                    <button class="sort-btn" data-sort="old">Сначала старые</button>
+                </div>
+
+                <div id="news-container"></div>
+            </section>
+
+            <footer>
+                <p>Приезжайте к нам ― у нас интересно!</p>
+                <p>Разработанно в рамках проекта "АгроПритяжение", 2026</p>
+            </footer>
+        </main>
+
+        <script>
+        /* ============================================================
+           КАК ДОБАВИТЬ НОВОСТЬ:
+           Скопируйте один блок { ... } в начало массива newsData
+           (или в конец — всё равно отсортируется по дате) и заполните поля.
+           Поле image — необязательное: если картинки нет, уберите строку.
+           Формат даты: "2026-05-20" (год-месяц-день).
+           ============================================================ */
+        var newsData = [
+            {
+                title: "Обновление сайта",
+                date: "2026-10-12",
+                text: "Мы обновили дизайн сайта. Теперь он более удобный и понятный, так как представляет собой обычный сайт, коих множество. Интерфейс многим знакомый, поэтому проблем ни у кого не должно возникнуть.",
+                image: "./IMGs/news/updateSite.png"
+            }
+        ];
+
+        // Форматирование даты "2026-05-20" -> "20 мая 2026"
+        var MONTHS = [
+            "января", "февраля", "марта", "апреля", "мая", "июня",
+            "июля", "августа", "сентября", "октября", "ноября", "декабря"
+        ];
+
+        function formatDate(iso) {
+            var parts = iso.split("-");
+            var day = parseInt(parts[2], 10);
+            var month = MONTHS[parseInt(parts[1], 10) - 1];
+            var year = parts[0];
+            return day + " " + month + " " + year;
+        }
+
+        function createNewsCard(item) {
+            var img = item.image
+                ? '<img src="' + item.image + '" alt="' + item.title + '">'
+                : '';
+            return '<div class="card news-card">' +
+                img +
+                '<p class="news-date">🗓 ' + formatDate(item.date) + '</p>' +
+                '<h3>' + item.title + '</h3>' +
+                '<p>' + item.text + '</p>' +
+                '</div>';
+        }
+
+        function renderNews(sortType) {
+            var container = document.getElementById('news-container');
+            var sorted = newsData.slice();
+
+            sorted.sort(function(a, b) {
+                var da = new Date(a.date).getTime();
+                var db = new Date(b.date).getTime();
+                return sortType === 'old' ? da - db : db - da;
+            });
+
+            var html = '<div class="cards-container">';
+            sorted.forEach(function(item) {
+                html += createNewsCard(item);
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        document.querySelectorAll('.sort-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.sort-btn').forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                renderNews(this.dataset.sort);
+            });
+        });
+
+        renderNews('new');
+        </script>
+    </body>
+</html>
