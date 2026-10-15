@@ -66,8 +66,8 @@ header .subtitle {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    flex-wrap: wrap;
-    margin-left: auto; /* прижимаем кнопки к правому краю */
+    flex-wrap: nowrap;      /* кнопки не переносятся */
+    margin-left: auto;      /* прижимаем кнопки к правому краю */
 }
 
 .headerLink {
@@ -78,6 +78,8 @@ header .subtitle {
     color: darkolivegreen;
     text-decoration: none;
     transition: background-color 0.2s, transform 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .headerLink:hover {
@@ -353,8 +355,9 @@ p {
     }
 
     header {
-        padding: 6px 12px;
+        padding: 6px 10px;
         gap: 8px;
+        flex-wrap: nowrap;
     }
 
     /* Уменьшаем логотип */
@@ -363,22 +366,21 @@ p {
         max-width: 42px;
     }
 
+    /* СКРЫВАЕМ текст "АгроШерья" — остаётся только логотип */
     header h1,
     .projectName {
-        font-size: 16px;
-    }
-
-    header .subtitle {
-        font-size: 12px;
+        display: none;
     }
 
     .headerLinks {
         gap: 6px;
+        margin-left: auto;
+        flex-wrap: nowrap;
     }
 
     .headerLink {
-        padding: 4px 10px;
-        font-size: 14px;
+        padding: 5px 10px;
+        font-size: 13px;
     }
 
     section {
@@ -475,16 +477,24 @@ p {
     }
 }
 
-/* ===== ОЧЕНЬ УЗКИЕ ЭКРАНЫ ===== */
-@media (max-width: 400px) {
-    /* Скрываем текстовое имя проекта, чтобы логотип и кнопки поместились в одну строку */
-    .projectName,
-    header h1 {
-        display: none;
+/* ===== ОЧЕНЬ УЗКИЕ ЭКРАНЫ (≤ 380px) ===== */
+@media (max-width: 380px) {
+    header {
+        gap: 6px;
+        padding: 5px 8px;
+    }
+
+    header img {
+        height: 28px;
+        max-width: 36px;
+    }
+
+    .headerLinks {
+        gap: 4px;
     }
 
     .headerLink {
-        padding: 4px 8px;
-        font-size: 13px;
+        padding: 4px 7px;
+        font-size: 12px;
     }
 }
